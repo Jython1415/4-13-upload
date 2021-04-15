@@ -13,6 +13,7 @@ void rollerB_set(int input);
 void chassisL_set(int input);
 void chassisR_set(int input);
 void chassis_set(int input);
+void chassis_set_turn(int input);
 
 void intake_set(int input);
 

@@ -51,6 +51,11 @@ void chassis_set(int input)
   chassisL_set(input);
   chassisR_set(input);
 }
+void chassis_set_turn(int input)
+{
+  chassisL_set(-input);
+  chassisR_set(input);
+}
 
 void intake_set(int input)
 {
