@@ -90,23 +90,23 @@ void t_c(int dist, int max_pwr)
     chassis_set_turn(int(max_pwr/3) * 1);
 
     // acc 2
-    waitUntil(rot_LB < int(dist/6) * 1);
+    waitUntil(rot_LB < -int(dist/6) * 1);
     chassis_set_turn(int(max_pwr/3) * 2);
 
     // cruise
-    waitUntil(rot_LB < int(dist/6) * 2);
+    waitUntil(rot_LB < -int(dist/6) * 2);
     chassis_set_turn(max_pwr);
 
     // decc 1
-    waitUntil(rot_LB < int(dist/6) * 4);
+    waitUntil(rot_LB < -int(dist/6) * 4);
     chassis_set_turn(int(max_pwr/3) * 2);
 
     // decc 2
-    waitUntil(rot_LB < int(dist/6) * 5);
+    waitUntil(rot_LB < -int(dist/6) * 5);
     chassis_set_turn(int(max_pwr/3) * 1);
 
     // stop
-    waitUntil(rot_LB < dist);
+    waitUntil(rot_LB < -dist);
     chassis_stop();
   }
   // backward movement
@@ -116,23 +116,23 @@ void t_c(int dist, int max_pwr)
     chassis_set_turn(-int(max_pwr/3) * 1);
 
     // acc 2
-    waitUntil(rot_LB > int(dist/6) * 1);
+    waitUntil(rot_LB > -int(dist/6) * 1);
     chassis_set_turn(-int(max_pwr/3) * 2);
 
     // cruise
-    waitUntil(rot_LB > int(dist/6) * 2);
+    waitUntil(rot_LB > -int(dist/6) * 2);
     chassis_set_turn(-max_pwr);
 
     // decc 1
-    waitUntil(rot_LB > int(dist/6) * 4);
+    waitUntil(rot_LB > -int(dist/6) * 4);
     chassis_set_turn(-int(max_pwr/3) * 2);
 
     // decc 2
-    waitUntil(rot_LB > int(dist/6) * 5);
+    waitUntil(rot_LB > -int(dist/6) * 5);
     chassis_set_turn(-int(max_pwr/3) * 1);
 
     // stop
-    waitUntil(rot_LB > dist);
+    waitUntil(rot_LB > -dist);
     chassis_stop();
   }
 }
@@ -159,7 +159,9 @@ void route_p1 ()
   waitUntil(rot_LB > 400);
   // intake until 750
   intake_set(100);
-  waitUntil(rot_LB > 2000);
+  waitUntil(rot_LB > 1250);
+  chassis_set(20);
+  waitUntil(rot_LB > 2500);
   // stop
   chassis_stop();
   intake_set(20);
@@ -171,14 +173,14 @@ void route_p1 ()
   // turn left
   chassisL_set(-2);
   chassisR_set(20);
-  waitUntil(rot_RB > 950);
+  waitUntil(rot_RB > 1000);
   chassis_stop();
 
   pause(500);
 
   // forward to the goal (time)
   chassis_set(40);
-  pause(1000);
+  pause(1250);
   chassis_stop();
 
   // shoot (time)
@@ -188,7 +190,7 @@ void route_p1 ()
   // remove blue balls
   rollerT_set(-5);
   rollerB_set(60);
-  pause(400);
+  pause(600);
   // stop (intake out to avoid descore)
   intake_set(-20);
   roller_set(0);
@@ -213,25 +215,25 @@ void route_p1 ()
 void route_p2 ()
 {
   // turn right
-  chassisL_set(5);
-  chassisR_set(-30);
-  waitUntil(rot_RB < -1000);
-  chassisR_set(-20);
-  waitUntil(rot_RB < -1500);
-  chassis_stop();
+  // chassisL_set(5);
+  // chassisR_set(-30);
+  // waitUntil(rot_RB < -1000);
+  // chassisR_set(-20);
+  // waitUntil(rot_RB < -1550);
+  // chassis_stop();
+  t_c(-1000, 50);
 
   // pause
   pause(500);
   chassis_reset();
 
   // forward
-  f_c(1500, 60);
+  f_c(1750, 60);
 
   p_r(); // reset
   
   // intake
   intake_set(100);
-  waitUntil(rot_LB > 500);
   chassis_set(20);
   waitUntil(rot_LB > 1000);
   // stop
@@ -276,7 +278,7 @@ void route_p2 ()
   intake_set(0);
 }
 
-void routes ()
+void route_1 ()
 {
   route_p1();
 
@@ -298,4 +300,9 @@ void routes ()
 
   // forward and intake
 
+}
+
+void route_2 ()
+{
+  f_c(1000, 60);
 }
