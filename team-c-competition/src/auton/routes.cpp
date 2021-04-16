@@ -145,7 +145,7 @@ void p_r()
 }
 
 // score the 1st tower and back up
-void route_p1 ()
+/*void route_p1 ()
 {
   // score preload
   rollerB_set(100);
@@ -209,19 +209,77 @@ void route_p1 ()
   // stop outaking
   roller_set(0);
   intake_set(0);
+}*/
+
+void route_p1 ()
+{
+  // score preload
+  rollerB_set(100);
+  waitUntil(rollerB.rotation(vex::rotationUnits::deg) > 180);
+  rollerB_set(0);
+
+  // go forward 400
+  chassis_set(10);
+  waitUntil(rot_LB > 200);
+  chassis_set(30);
+  waitUntil(rot_LB > 400);
+  chassis_set(50);
+  // intake until 750
+  intake_set(100);
+  waitUntil(rot_LB > 1250);
+  chassis_set(10);
+  waitUntil(rot_LB > 2500);
+  // stop
+  chassis_stop();
+  intake_set(20);
+
+  p_r(); // reset
+
+  // turn left
+  t_c(600, 40);
+
+  pause(500);
+
+  // forward to the goal (time)
+  chassis_set(30);
+  pause(2000);
+  chassis_stop();
+
+  // shoot (time)
+  intake_set(50);
+  roller_set(100);
+  pause(600);
+  // pause a bit
+  intake_set(0);
+  roller_set(0);
+  pause(500);
+  // remove blue balls
+  intake_set(100);
+  rollerT_set(-10);
+  rollerB_set(60);
+  pause(1200);
+  // stop
+  intake_set(0);
+  roller_set(0);
+  
+  p_r(); // reset
+
+  // back away
+  intake_set(-20);
+  chassis_set(-40);
+  f_c(-1000, 40);
+  // get rid of blue balls
+  intake_set(-100);
+  roller_set(-100);
+  pause(1000);
+  intake_set(0);
+  roller_set(0);
 }
 
 // score the 2nd tower and back up
 void route_p2 ()
 {
-  // turn right
-  // chassisL_set(5);
-  // chassisR_set(-30);
-  // waitUntil(rot_RB < -1000);
-  // chassisR_set(-20);
-  // waitUntil(rot_RB < -1550);
-  // chassis_stop();
-  t_c(-1000, 50);
+  t_c(-1000, 30);
 
   // pause
   pause(500);
@@ -243,7 +301,7 @@ void route_p2 ()
   p_r(); // reset
 
   // turn left
-  t_c(1000, 50);
+  t_c(600, 50);
 
   // forward to goal
   chassis_set(40);
@@ -252,6 +310,7 @@ void route_p2 ()
 
   p_r(); // reset
 
+  //// this should be a function
   // shoot (time)
   intake_set(100);
   roller_set(100);
@@ -299,7 +358,45 @@ void route_1 ()
   p_r(); // reset
 
   // forward and intake
+  intake_set(100);
+  f_c(600, 40);
+  intake_set(20);
 
+  p_r(); // reset
+
+  // turn left
+  t_c(600, 40);
+
+  // forward to goal
+  chassis_set(30);
+  pause(1500);
+  chassis_set(0);
+
+  //// this should be a function
+  // shoot (time)
+  intake_set(100);
+  roller_set(100);
+  pause(600);
+  // remove blue balls
+  rollerT_set(-5);
+  rollerB_set(60);
+  pause(250);
+  // stop (intake out to avoid descore)
+  intake_set(-20);
+  roller_set(0);
+  // reset encoders
+  chassis_reset();
+  // back away
+  chassis_set(-20);
+  waitUntil(rot_LB < -400);
+  roller_set(-100);
+  intake_set(-100);
+  f_c(-1000, 60);
+  // outake a bit more
+  pause(500);
+  // stop outaking
+  roller_set(0);
+  intake_set(0);
 }
 
 void route_2 ()
