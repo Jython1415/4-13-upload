@@ -22,6 +22,9 @@ void route_p1 ();
 // score the 2nd tower and back up
 void route_p2 ();
 
+// head across to the other corner
+void route_p2_v2 ();
+
 void route_1 () ;
 void route_2 () ;
 

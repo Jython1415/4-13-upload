@@ -144,72 +144,41 @@ void p_r()
   chassis_reset();
 }
 
-// score the 1st tower and back up
-/*void route_p1 ()
+// score corner
+void route_corner ()
 {
-  // score preload
-  rollerB_set(100);
-  waitUntil(rollerB.rotation(vex::rotationUnits::deg) > 180);
-  rollerB_set(0);
-
-  // go forward 400
-  chassis_set(30);
-  waitUntil(rot_LB > 200);
-  chassis_set(60);
-  waitUntil(rot_LB > 400);
-  // intake until 750
-  intake_set(100);
-  waitUntil(rot_LB > 1250);
-  chassis_set(20);
-  waitUntil(rot_LB > 2500);
-  // stop
-  chassis_stop();
-  intake_set(20);
-
-  pause(500);
-
-  chassis_reset();
-
-  // turn left
-  chassisL_set(-2);
-  chassisR_set(20);
-  waitUntil(rot_RB > 1000);
-  chassis_stop();
-
-  pause(500);
-
-  // forward to the goal (time)
-  chassis_set(40);
-  pause(1250);
-  chassis_stop();
-
   // shoot (time)
-  intake_set(100);
+  intake_set(50);
   roller_set(100);
   pause(600);
+  // pause a bit
+  intake_set(0);
+  roller_set(0);
+  chassis_set(30);
+  pause(500);
   // remove blue balls
-  rollerT_set(-5);
+  intake_set(100);
+  rollerT_set(-10);
   rollerB_set(60);
   pause(600);
-  // stop (intake out to avoid descore)
-  intake_set(-20);
-  roller_set(0);
-  // reset encoders
-  chassis_reset();
-  // back away
-  chassis_set(-40);
-  waitUntil(rot_LB < -400);
-  roller_set(-100);
-  intake_set(-100);
-  waitUntil(rot_LB < -1000);
   // stop
-  chassis_stop();
-  // outake a bit more
-  pause(500);
-  // stop outaking
-  roller_set(0);
   intake_set(0);
-}*/
+  roller_set(0);
+  chassis_stop();
+  
+  p_r(); // reset
+
+  // back away
+  intake_set(-20);
+  chassis_set(-40);
+  f_c(-1000, 40);
+  // get rid of blue balls
+  intake_set(-100);
+  roller_set(-100);
+  pause(1000);
+  intake_set(0);
+  roller_set(0);
+}
 
 void route_p1 ()
 {
@@ -229,7 +198,7 @@ void route_p1 ()
   waitUntil(rot_LB > 2000);
   // slow down
   chassis_set(10);
-  waitUntil(rot_LB > 3000);
+  waitUntil(rot_LB > 2500);
   // stop
   chassis_stop();
   intake_set(20);
@@ -237,7 +206,7 @@ void route_p1 ()
   p_r(); // reset
 
   // turn left
-  t_c(375, 40);
+  t_c(325, 40);
 
   pause(500);
 
@@ -246,35 +215,7 @@ void route_p1 ()
   pause(2000);
   chassis_stop();
 
-  // shoot (time)
-  intake_set(50);
-  roller_set(100);
-  pause(600);
-  // pause a bit
-  intake_set(0);
-  roller_set(0);
-  pause(500);
-  // remove blue balls
-  intake_set(100);
-  rollerT_set(-10);
-  rollerB_set(60);
-  pause(1200);
-  // stop
-  intake_set(0);
-  roller_set(0);
-  
-  p_r(); // reset
-
-  // back away
-  intake_set(-20);
-  chassis_set(-40);
-  f_c(-1000, 40);
-  // get rid of blue balls
-  intake_set(-100);
-  roller_set(-100);
-  pause(1000);
-  intake_set(0);
-  roller_set(0);
+  route_corner();
 }
 
 // score the 2nd tower and back up
@@ -336,6 +277,31 @@ void route_p2 ()
   // stop outaking
   roller_set(0);
   intake_set(0);
+}
+
+// head across to the other corner
+void route_p2_v2 ()
+{
+  p_r(); // reset
+
+  chassis_set(10);
+  waitUntil(rot_LB > 200);
+  intake_set(100);
+  f_c(8000, 60);
+  p_r();
+
+  t_c(150, 30);
+
+  p_r();
+
+  // forward to goal
+  chassis_set(30);
+  pause(2000);
+  chassis_stop();
+  
+  pause(500); // pause
+
+  route_corner();
 }
 
 void route_1 ()
@@ -402,5 +368,30 @@ void route_1 ()
 
 void route_2 ()
 {
-  f_c(1000, 60);
+  route_p1();
+
+  p_r(); // reset
+
+  // turn right
+  t_c(-1000, 40);
+
+  // back against the wall
+  chassis_set(-35);
+  pause(1750);
+  chassis_stop();
+
+  route_p2_v2();
+
+  p_r(); // reset
+
+  t_c(-350, 30);
+
+  pause(500); // pause
+
+  // align against wall
+  chassis_set(-30);
+  pause(1500);
+  chassis_stop();
+
+  route_p2_v2();
 }
