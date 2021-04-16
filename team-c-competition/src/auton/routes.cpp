@@ -219,14 +219,14 @@ void route_p1 ()
   rollerB_set(0);
 
   // go forward 400
-  chassis_set(10);
+  chassis_set(20);
   waitUntil(rot_LB > 200);
   chassis_set(30);
   waitUntil(rot_LB > 400);
   chassis_set(50);
   // intake until 750
   intake_set(100);
-  waitUntil(rot_LB > 1250);
+  waitUntil(rot_LB > 1500);
   chassis_set(10);
   waitUntil(rot_LB > 2500);
   // stop
@@ -236,7 +236,7 @@ void route_p1 ()
   p_r(); // reset
 
   // turn left
-  t_c(600, 40);
+  t_c(400, 40);
 
   pause(500);
 
