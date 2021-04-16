@@ -218,17 +218,18 @@ void route_p1 ()
   waitUntil(rollerB.rotation(vex::rotationUnits::deg) > 180);
   rollerB_set(0);
 
-  // go forward 400
+  // get to ball
   chassis_set(20);
   waitUntil(rot_LB > 200);
   chassis_set(30);
-  waitUntil(rot_LB > 400);
+  waitUntil(rot_LB > 100);
+  // intake
   chassis_set(50);
-  // intake until 750
   intake_set(100);
-  waitUntil(rot_LB > 1500);
+  waitUntil(rot_LB > 2000);
+  // slow down
   chassis_set(10);
-  waitUntil(rot_LB > 2500);
+  waitUntil(rot_LB > 3000);
   // stop
   chassis_stop();
   intake_set(20);
@@ -236,7 +237,7 @@ void route_p1 ()
   p_r(); // reset
 
   // turn left
-  t_c(400, 40);
+  t_c(375, 40);
 
   pause(500);
 
@@ -279,7 +280,7 @@ void route_p1 ()
 // score the 2nd tower and back up
 void route_p2 ()
 {
-  t_c(-1000, 30);
+  t_c(-900, 30);
 
   // pause
   pause(500);
@@ -348,7 +349,7 @@ void route_1 ()
   p_r(); // reset
 
   // turn right
-  t_c(-1000, 50);
+  t_c(-600, 50);
 
   p_r(); // reset
 
