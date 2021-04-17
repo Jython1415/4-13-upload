@@ -154,13 +154,13 @@ void route_corner ()
   // pause a bit
   intake_set(0);
   roller_set(0);
-  chassis_set(30);
+  chassis_set(20);
   pause(500);
   // remove blue balls
   intake_set(100);
   rollerT_set(-10);
   rollerB_set(60);
-  pause(450);
+  pause(550);
   // stop
   intake_set(0);
   roller_set(0);
@@ -171,7 +171,7 @@ void route_corner ()
   // back away
   intake_set(-20);
   chassis_set(-40);
-  f_c(-1000, 40);
+  f_c(-1300, 40);
   // get rid of blue balls
   intake_set(-50);
   roller_set(-100);
@@ -187,7 +187,7 @@ void route_corner_descore ()
   intake_set(100);
   rollerT_set(-10);
   rollerB_set(60);
-  pause(450);
+  pause(550);
   // stop
   intake_set(0);
   roller_set(0);
@@ -234,7 +234,7 @@ void route_p1 ()
   p_r(); // reset
 
   // turn left
-  t_c(325, 40);
+  t_c(275, 40);
 
   pause(500);
 
@@ -315,11 +315,11 @@ void route_p2_v2 ()
 
   chassis_set(10);
   waitUntil(rot_LB > 200);
-  intake_set(100);
+  intake_set(-30);
   f_c(8000, 60);
   p_r();
 
-  t_c(150, 30);
+  t_c(100, 30);
 
   p_r();
 
@@ -397,6 +397,8 @@ void route_1 ()
 
 void route_2 ()
 {
+  chassis_reset();
+
   route_p1();
 
   p_r(); // reset
@@ -406,7 +408,7 @@ void route_2 ()
 
   // back against the wall
   chassis_set(-35);
-  pause(1750);
+  pause(2000);
   chassis_stop();
 
   route_p2_v2();
