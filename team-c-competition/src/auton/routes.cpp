@@ -160,7 +160,7 @@ void route_corner ()
   intake_set(100);
   rollerT_set(-10);
   rollerB_set(60);
-  pause(600);
+  pause(450);
   // stop
   intake_set(0);
   roller_set(0);
@@ -173,12 +173,40 @@ void route_corner ()
   chassis_set(-40);
   f_c(-1000, 40);
   // get rid of blue balls
-  intake_set(-100);
+  intake_set(-50);
+  roller_set(-100);
+  pause(1500);
+  intake_set(0);
+  roller_set(0);
+}
+
+// corner descore
+void route_corner_descore ()
+{
+  // remove blue balls
+  intake_set(100);
+  rollerT_set(-10);
+  rollerB_set(60);
+  pause(450);
+  // stop
+  intake_set(0);
+  roller_set(0);
+  chassis_stop();
+  
+  p_r(); // reset
+
+  // back away
+  intake_set(-20);
+  chassis_set(-40);
+  f_c(-1000, 40);
+  // get rid of blue balls
+  intake_set(-50);
   roller_set(-100);
   pause(1000);
   intake_set(0);
   roller_set(0);
 }
+
 
 void route_p1 ()
 {
@@ -211,6 +239,7 @@ void route_p1 ()
   pause(500);
 
   // forward to the goal (time)
+  intake_set(-5);
   chassis_set(30);
   pause(2000);
   chassis_stop();
@@ -301,7 +330,7 @@ void route_p2_v2 ()
   
   pause(500); // pause
 
-  route_corner();
+  route_corner_descore();
 }
 
 void route_1 ()
@@ -384,7 +413,7 @@ void route_2 ()
 
   p_r(); // reset
 
-  t_c(-350, 30);
+  t_c(-450, 30);
 
   pause(500); // pause
 
